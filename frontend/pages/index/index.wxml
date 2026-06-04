@@ -1,0 +1,111 @@
+<view class="page">
+  <!-- ── Header: search + chat icon ── -->
+  <view class="header">
+    <view class="search-wrap">
+      <text class="search-icon">🔍</text>
+      <input
+        class="search-input"
+        placeholder="搜索物品"
+        placeholder-class="search-placeholder"
+        bindinput="onSearchInput"
+        bindconfirm="handleSearch"
+        confirm-type="search"
+        value="{{searchKeyword}}"
+      />
+    </view>
+    <view class="chat-icon" bindtap="goToChat">
+      <text class="chat-icon-glyph">💬</text>
+      <view wx:if="{{unreadCount > 0}}" class="chat-dot"></view>
+    </view>
+  </view>
+
+  <!-- ── Segmented pill tabs + filter trigger ── -->
+  <view class="sub-header">
+    <view class="seg">
+      <view
+        class="seg-item {{activeTab === 'all' ? 'seg-item-active' : ''}}"
+        bindtap="changeTab"
+        data-tab="all"
+      >全部</view>
+      <view
+        class="seg-item {{activeTab === 'lost' ? 'seg-item-active' : ''}}"
+        bindtap="changeTab"
+        data-tab="lost"
+      >寻物</view>
+      <view
+        class="seg-item {{activeTab === 'found' ? 'seg-item-active' : ''}}"
+        bindtap="changeTab"
+        data-tab="found"
+      >拾获</view>
+    </view>
+
+    <view class="filter-trigger" bindtap="toggleFilter">
+      <text wx:if="{{!filterActive}}">筛选</text>
+      <text wx:else class="filter-trigger-on">已筛选 ·</text>
+      <text class="filter-trigger-arrow">▾</text>
+    </view>
+  </view>
+
+  <!-- ── Feed ── -->
+  <view class="feed">
+    <item-card
+      wx:for="{{itemList}}"
+      wx:key="id"
+      item="{{item}}"
+      bind:cardClick="goToDetail"
+    />
+  </view>
+
+  <view wx:if="{{itemList.length === 0 && !loading}}" class="empty">
+    <view class="empty-emoji">🪶</view>
+    <view class="empty-title">空空如也</view>
+    <view class="empty-sub">还没有相关物品</view>
+  </view>
+
+  <view wx:if="{{loading}}" class="loading">加载中...</view>
+
+  <!-- ── Bottom sheet filter ── -->
+  <view
+    wx:if="{{showFilter}}"
+    class="sheet-mask"
+    bindtap="toggleFilter"
+    catchtouchmove="noop"
+  ></view>
+  <view class="sheet {{showFilter ? 'sheet-open' : ''}}" catchtap="noop">
+    <view class="sheet-handle"></view>
+    <view class="sheet-title">筛选</view>
+
+    <view class="sheet-row">
+      <text class="sheet-label">类型</text>
+      <picker bindchange="onTypeChange" value="{{filterForm.type[0]}}" range="{{typeList[0]}}">
+        <view class="sheet-value">{{selectedTypeText || '不限'}}</view>
+      </picker>
+    </view>
+
+    <view class="sheet-row">
+      <text class="sheet-label">地点</text>
+      <picker bindchange="onLocationChange" value="" range="{{locationList}}" range-key="name">
+        <view class="sheet-value">{{selectedLocation.name || '不限'}}</view>
+      </picker>
+    </view>
+
+    <view class="sheet-row">
+      <text class="sheet-label">范围</text>
+      <picker bindchange="onRangeChange" value="" range="{{rangeList}}">
+        <view class="sheet-value">{{selectedRangeText || '不限'}}</view>
+      </picker>
+    </view>
+
+    <view class="sheet-row">
+      <text class="sheet-label">状态</text>
+      <picker bindchange="onStatusChange" value="" range="{{statusList}}">
+        <view class="sheet-value">{{selectedStatusText || '不限'}}</view>
+      </picker>
+    </view>
+
+    <view class="sheet-actions">
+      <view class="sheet-btn sheet-btn-ghost" bindtap="resetFilter">重置</view>
+      <view class="sheet-btn sheet-btn-primary" bindtap="confirmFilter">应用</view>
+    </view>
+  </view>
+</view>

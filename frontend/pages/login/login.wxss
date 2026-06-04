@@ -1,0 +1,135 @@
+/* ── Page root background ── */
+page {
+  background-color: #F4FAF7;
+}
+
+/* ── Full-screen flex container ── */
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 48rpx 100rpx;
+  box-sizing: border-box;
+}
+
+/* ── Hero / illustration section ── */
+.hero-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 120rpx;
+}
+
+/* Overlapping blobs give depth without a real image */
+.illus-wrap {
+  position: relative;
+  width: 260rpx;
+  height: 260rpx;
+  margin-bottom: 56rpx;
+}
+
+.illus-blob {
+  position: absolute;
+  border-radius: 50%;
+}
+
+.illus-blob--lg {
+  width: 260rpx;
+  height: 260rpx;
+  top: 0;
+  left: 0;
+  background-color: #C8EDD9;
+}
+
+.illus-blob--sm {
+  width: 180rpx;
+  height: 180rpx;
+  top: -28rpx;
+  left: 88rpx;
+  background-color: #A8D5C2;
+  opacity: 0.55;
+}
+
+/* Centers the emoji over both blobs */
+.illus-center {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 260rpx;
+  height: 260rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.illus-emoji {
+  font-size: 100rpx;
+  line-height: 1;
+}
+
+.app-title {
+  font-size: 52rpx;
+  font-weight: 700;
+  color: #1C1C1E;
+  letter-spacing: 6rpx;
+  margin-bottom: 24rpx;
+}
+
+.app-subtitle {
+  font-size: 28rpx;
+  color: #8E8E93;
+  letter-spacing: 1rpx;
+  text-align: center;
+}
+
+/* ── Action area (pinned to bottom) ── */
+.action-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* WeChat green pill button */
+.wechat-btn {
+  width: 100%;
+  padding: 28rpx 0;
+  border-radius: 999rpx;
+  background-color: #07C160;
+  color: #ffffff;
+  font-size: 34rpx;
+  font-weight: 600;
+  letter-spacing: 2rpx;
+  box-shadow: 0 8rpx 28rpx rgba(7, 193, 96, 0.38);
+  border: none;
+  margin-bottom: 48rpx;
+}
+
+/* Strip WeChat's own inset border */
+.wechat-btn::after {
+  border: none;
+}
+
+.wechat-btn[disabled] {
+  opacity: 0.55;
+  box-shadow: none;
+}
+
+/* Live status text under the button */
+.status-text {
+  font-size: 26rpx;
+  color: #07C160;
+  margin-bottom: 24rpx;
+  letter-spacing: 1rpx;
+}
+
+/* Subtle secondary link */
+.back-link {
+  font-size: 28rpx;
+  color: #B0B0B0;
+  padding: 20rpx 40rpx;
+}

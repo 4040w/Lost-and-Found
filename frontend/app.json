@@ -1,0 +1,62 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/publish/lost/lost",
+    "pages/publish/found/found",
+    "pages/detail/detail",
+    "pages/claim/claim",
+    "pages/location/select/select",
+    "pages/user/user",
+    "pages/user/publish/publish",
+    "pages/user/claim/claim",
+    "pages/login/login",
+    "pages/register/register",
+    "pages/message/message",
+    "pages/message/detail/detail",
+    "pages/chat/chat",
+    "pages/chat-list/chat-list",
+    "pages/help/help",
+    "pages/admin/login/login",
+    "pages/admin/check/check",
+    "pages/admin/user/user"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#FFFFFF",
+    "navigationBarTitleText": "校园失物招领",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#FAF8F5"
+  },
+  "tabBar": {
+  "color": "#8A8A8A",
+  "selectedColor": "#A8D5C2",
+  "backgroundColor": "#FFFFFF",
+  "borderStyle": "white",
+  "list": [
+    {
+      "pagePath": "pages/index/index",
+      "text": "🏠 首页"
+    },
+    {
+      "pagePath": "pages/publish/lost/lost",
+      "text": "🔍 寻物"
+    },
+    {
+      "pagePath": "pages/publish/found/found",
+      "text": "✅ 拾获"
+    },
+    {
+      "pagePath": "pages/user/user",
+      "text": "👤 我的"
+    }
+  ]
+},
+  "permission": {
+    "scope.userLocation": {
+      "desc": "获取您的当前位置，用于在地图上选点及查找周边"
+    }
+  },
+  "requiredPrivateInfos": ["getLocation", "chooseLocation"],
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

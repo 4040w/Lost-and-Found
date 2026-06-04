@@ -1,0 +1,60 @@
+<view class="my-publish-page">
+  <!-- 状态筛选标签 -->
+  <view class="status-tab">
+    <view 
+      class="tab-item {{activeStatus === 'all' ? 'active' : ''}}"
+      bindtap="changeStatus"
+      data-status="all"
+    >全部</view>
+    <view 
+      class="tab-item {{activeStatus === 'pending' ? 'active' : ''}}"
+      bindtap="changeStatus"
+      data-status="pending"
+    >待审核</view>
+    <view 
+      class="tab-item {{activeStatus === 'agree' ? 'active' : ''}}"
+      bindtap="changeStatus"
+      data-status="agree"
+    >已上线</view>
+    <view 
+      class="tab-item {{activeStatus === 'found' ? 'active' : ''}}"
+      bindtap="changeStatus"
+      data-status="found"
+    >已认领</view>
+  </view>
+
+  <!-- 物品列表 -->
+  <view class="publish-list" wx:if="{{publishList.length > 0}}">
+    <item-card 
+      wx:for="{{publishList}}" 
+      wx:key="id"
+      item="{{item}}"
+      bind:cardClick="goToDetail"
+    >
+      <!-- 卡片操作按钮 -->
+      <view class="card-op" slot="right">
+        <button 
+          class="op-btn edit" 
+          bindtap="onEdit"
+          data-id="{{item.id}}"
+          wx:if="{{item.status === 'pending'}}"
+        >编辑</button>
+        <button
+          class="op-btn delete"
+          bindtap="onDelete"
+          data-id="{{item._id || item.id}}"
+          data-type="{{item.itemType}}"
+        >删除</button>
+      </view>
+    </item-card>
+  </view>
+
+  <!-- 空数据提示 -->
+  <empty 
+    wx:else
+    text="暂无发布记录"
+    subtext="快去发布寻物/拾获物品吧~"
+    btnText="去发布"
+    bind:btnClick="goToPublish"
+  ></empty>
+</view>

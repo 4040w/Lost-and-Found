@@ -1,0 +1,30 @@
+<view class="login-container">
+
+  <!-- Upper hero / illustration area -->
+  <view class="hero-section">
+    <view class="illus-wrap">
+      <view class="illus-blob illus-blob--lg"></view>
+      <view class="illus-blob illus-blob--sm"></view>
+      <view class="illus-center">
+        <text class="illus-emoji">📦</text>
+      </view>
+    </view>
+
+    <text class="app-title">校园失物招领</text>
+    <text class="app-subtitle">帮你找回丢失的 · 也帮你归还捡到的</text>
+  </view>
+
+  <!-- Login action area -->
+  <view class="action-section">
+    <button
+      class="wechat-btn"
+      bindtap="handleWechatLogin"
+      disabled="{{logging}}"
+    >{{logging ? '登录中...' : '微信一键登录'}}</button>
+
+    <text wx:if="{{statusText}}" class="status-text">{{statusText}}</text>
+
+    <text class="back-link" bindtap="goBack">暂不登录，返回</text>
+  </view>
+
+</view>

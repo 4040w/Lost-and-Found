@@ -1,0 +1,80 @@
+.upload-img {
+  width: 100%;
+}
+
+/* 上传提示 */
+.upload-tip {
+  font-size: 12px;
+  color: #8A8A8A;
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+/* 图片列表 */
+.img-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* 图片项 */
+.img-item {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.img-item image {
+  width: 100%;
+  height: 100%;
+}
+
+/* 删除按钮 */
+.del-btn {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  width: 20px;
+  height: 20px;
+  background-color: rgba(0, 0, 0, 0.55);
+  color: white;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 20px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* 添加按钮 */
+.img-add {
+  width: 80px;
+  height: 80px;
+  border: 1px dashed #D4CAFE;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #FAF8F5;
+}
+
+.img-add image {
+  width: 30px;
+  height: 30px;
+  margin-bottom: 5px;
+}
+
+.img-add text {
+  font-size: 12px;
+  color: #8A8A8A;
+}
+
+/* 数量提示 */
+.count-tip {
+  font-size: 11px;
+  color: #8A8A8A;
+  margin-top: 8px;
+  text-align: right;
+}

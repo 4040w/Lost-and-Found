@@ -1,0 +1,78 @@
+<wxs src="../../utils/imgUrl.wxs" module="imgUrl" />
+<view class="page">
+  <!-- ── Full-bleed cover with title overlay ── -->
+  <view class="hero">
+    <block wx:if="{{item.cover}}">
+      <image class="hero-img" src="{{imgUrl.resolve(item.cover, baseUrl)}}" mode="aspectFill" />
+    </block>
+    <block wx:else>
+      <view class="hero-empty">📦</view>
+    </block>
+    <view class="hero-gradient"></view>
+    <view class="hero-overlay">
+      <view class="hero-tag {{item.type === 'lost' ? 'tag-lost' : 'tag-found'}}">
+        {{item.type === 'lost' ? '寻物启事' : '拾获物品'}}
+      </view>
+      <view class="hero-title">{{item.title}}</view>
+      <view class="hero-meta">
+        <text>{{item.create_time}}</text>
+        <text class="hero-meta-dot">·</text>
+        <text>{{item.status === 'agree' ? '已上线' : item.status === 'found' ? '已找回' : '待审核'}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- ── Single continuous body with hairline sections ── -->
+  <view class="body">
+    <view class="sec">
+      <view class="sec-label">核心特征</view>
+      <view class="sec-content">{{item.feature || '—'}}</view>
+    </view>
+
+    <view class="sec">
+      <view class="sec-label">可能{{item.type === 'lost' ? '丢失' : '拾获'}}地点</view>
+      <view wx:if="{{item.locationList && item.locationList.length > 0}}">
+        <view
+          class="sec-list-item"
+          wx:for="{{item.locationList}}"
+          wx:for-item="loc"
+          wx:key="index"
+        >
+          <text class="sec-list-idx">{{index + 1}}</text>
+          <view class="sec-list-text">
+            <view class="sec-list-name">{{loc.name}}</view>
+            <view class="sec-list-sub">{{loc.range === 'only' ? '仅该地点' : loc.range === '50m' ? '50米内' : '整个校区'}}</view>
+          </view>
+        </view>
+      </view>
+      <view wx:else class="sec-content sec-muted">暂无地点信息</view>
+    </view>
+
+    <view wx:if="{{item.reward > 0}}" class="sec">
+      <view class="sec-label">悬赏</view>
+      <view class="sec-content">
+        <text class="sec-reward">¥{{item.reward}}</text>
+        <text class="sec-muted-inline">· {{item.is_mail ? '接受邮寄' : '不接受邮寄'}}</text>
+      </view>
+    </view>
+
+    <view wx:if="{{item.remark}}" class="sec">
+      <view class="sec-label">备注</view>
+      <view class="sec-content">{{item.remark}}</view>
+    </view>
+
+    <!-- Footer breathing room for sticky CTA -->
+    <view class="body-foot"></view>
+  </view>
+
+  <!-- ── Sticky bottom action ── -->
+  <view wx:if="{{!isAuthor && item.status === 'agree'}}" class="action-dock">
+    <view class="action-primary" bindtap="contactAuthor">
+      <text class="action-primary-glyph">💬</text>
+      <text>联系 TA</text>
+    </view>
+    <view class="action-more" bindtap="goToClaim">
+      {{item.type === 'lost' ? '我捡到了' : '我丢了'}}
+    </view>
+  </view>
+</view>

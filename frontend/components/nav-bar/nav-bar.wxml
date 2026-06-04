@@ -1,0 +1,14 @@
+<view class="nav-bar">
+  <!-- 返回按钮 -->
+  <view class="nav-left" wx:if="{{showBack}}" bindtap="onBackClick">
+    <text class="back-icon">←</text>
+  </view>
+  
+  <!-- 标题 -->
+  <view class="nav-title">{{title}}</view>
+  
+  <!-- 右侧操作按钮 -->
+  <view class="nav-right" wx:if="{{rightText}}" bindtap="onRightClick">
+    <text>{{rightText}}</text>
+  </view>
+</view>

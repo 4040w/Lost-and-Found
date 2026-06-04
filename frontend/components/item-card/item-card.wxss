@@ -1,0 +1,84 @@
+.card {
+  background-color: #FFFFFF;
+  border-radius: 24rpx;
+  overflow: hidden;
+  margin-bottom: 32rpx;
+}
+
+/* Hero media — fixed 16:9 ratio */
+.card-media {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 */
+  background-color: #F4F4F4;
+}
+
+.card-media-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.card-media-empty {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 80rpx;
+  color: #DDD;
+  background: #FAFAFA;
+}
+
+/* Tag pill overlaid on media */
+.tag {
+  position: absolute;
+  left: 20rpx;
+  bottom: 20rpx;
+  padding: 6rpx 18rpx;
+  border-radius: 999rpx;
+  font-size: 22rpx;
+  font-weight: 500;
+  backdrop-filter: blur(20rpx);
+}
+
+.tag-lost {
+  background-color: rgba(255, 240, 230, 0.95);
+  color: #C56A17;
+}
+
+.tag-found {
+  background-color: rgba(232, 248, 240, 0.95);
+  color: #2B8B5A;
+}
+
+/* Body — title large & bold, meta minimal */
+.card-body {
+  padding: 24rpx 28rpx 28rpx;
+}
+
+.card-title {
+  font-size: 34rpx;
+  font-weight: 600;
+  color: #1C1C1E;
+  line-height: 1.35;
+  letter-spacing: 0.5rpx;
+  /* allow 2 lines, ellipsis on overflow */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.card-meta {
+  margin-top: 12rpx;
+  font-size: 22rpx;
+  color: #999999;
+  font-weight: 400;
+}

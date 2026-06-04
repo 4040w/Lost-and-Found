@@ -1,0 +1,49 @@
+<view class="claim-page">
+  <view class="claim-header">
+    <view class="item-title">认领物品：{{item.title}}</view>
+    <view class="item-type">{{item.type === 'lost' ? '寻物启事' : '拾获物品'}}</view>
+  </view>
+
+  <view class="form-section">
+    <view class="form-item">
+      <label class="required">认领凭证</label>
+      <textarea
+        bindinput="onFormInput"
+        data-key="credentials"
+        placeholder="请描述你能证明物品归属的凭证（如证件号后4位、物品细节等）"
+        value="{{formData.credentials}}"
+        maxlength="200"
+      />
+    </view>
+
+    <view class="form-item">
+      <label>凭证照片（可选）</label>
+      <view class="upload-list">
+        <view class="upload-item" wx:for="{{imgList}}" wx:key="index">
+          <image src="{{item}}" mode="aspectFill"></image>
+          <view bindtap="delImg" data-index="{{index}}" class="del-btn">×</view>
+        </view>
+        <view class="upload-add" bindtap="chooseImg" wx:if="{{imgList.length < 3}}">
+          <view class="add-icon">➕</view>
+          <text>添加凭证照片</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="form-item">
+      <label class="required">联系方式</label>
+      <input
+        bindinput="onFormInput"
+        data-key="contact"
+        placeholder="手机号/微信号（仅管理员可见）"
+        value="{{formData.contact}}"
+      />
+    </view>
+  </view>
+
+  <button
+    class="submit-btn primary"
+    bindtap="submitClaim"
+    wx:if="{{formData.credentials && formData.contact}}"
+  >提交认领申请</button>
+</view>

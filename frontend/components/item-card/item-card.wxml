@@ -1,0 +1,27 @@
+<wxs src="../../utils/imgUrl.wxs" module="imgUrl" />
+<view class="card" bindtap="onCardClick" data-id="{{item._id}}" data-type="{{item.type}}">
+  <!-- Image-first hero (16:9) -->
+  <view class="card-media">
+    <image
+      wx:if="{{item.cover}}"
+      class="card-media-img"
+      src="{{imgUrl.resolve(item.cover, baseUrl)}}"
+      mode="aspectFill"
+      lazy-load
+    />
+    <view wx:else class="card-media-empty">📦</view>
+
+    <!-- Tag pill sits on the image bottom-left for compactness -->
+    <view class="tag {{item.type === 'lost' ? 'tag-lost' : 'tag-found'}}">
+      {{item.type === 'lost' ? '寻物' : '拾获'}}
+    </view>
+  </view>
+
+  <!-- Title + minimal one-line meta -->
+  <view class="card-body">
+    <view class="card-title">{{item.title}}</view>
+    <view class="card-meta">{{formatTime(item.create_time)}}</view>
+  </view>
+
+  <slot name="right"></slot>
+</view>

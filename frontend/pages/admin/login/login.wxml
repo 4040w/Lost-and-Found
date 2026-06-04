@@ -1,0 +1,13 @@
+<view class="login-container">
+  <view class="title">管理员登录</view>
+
+  <view class="form-item">
+    <input class="input" placeholder="请输入管理员账号" bindinput="onUsernameInput" value="{{username}}" />
+  </view>
+
+  <view class="form-item">
+    <input class="input" password placeholder="请输入密码" bindinput="onPasswordInput" value="{{password}}" />
+  </view>
+
+  <button class="login-btn" bindtap="adminLogin">登录</button>
+</view>

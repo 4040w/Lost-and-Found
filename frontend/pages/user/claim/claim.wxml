@@ -1,0 +1,67 @@
+<wxs src="../../../utils/imgUrl.wxs" module="imgUrl" />
+<view class="my-claim-page">
+  <!-- 状态筛选标签 -->
+  <view class="status-tab">
+    <view 
+      class="tab-item {{activeStatus === 'all' ? 'active' : ''}}"
+      bindtap="changeStatus"
+      data-status="all"
+    >全部</view>
+    <view 
+      class="tab-item {{activeStatus === 'pending' ? 'active' : ''}}"
+      bindtap="changeStatus"
+      data-status="pending"
+    >审核中</view>
+    <view 
+      class="tab-item {{activeStatus === 'agree' ? 'active' : ''}}"
+      bindtap="changeStatus"
+      data-status="agree"
+    >审核通过</view>
+    <view 
+      class="tab-item {{activeStatus === 'reject' ? 'active' : ''}}"
+      bindtap="changeStatus"
+      data-status="reject"
+    >审核驳回</view>
+  </view>
+
+  <!-- 认领列表 -->
+  <view class="claim-list" wx:if="{{claimList.length > 0}}">
+    <view
+      class="claim-item"
+      wx:for="{{claimList}}"
+      wx:key="id"
+    >
+      <!-- 物品信息 + 申请状态 -->
+      <view class="claim-item-top" bindtap="goToDetail" data-id="{{item._id || item.id}}">
+        <view class="item-info">
+          <image wx:if="{{item.item && item.item.cover}}" src="{{imgUrl.resolve(item.item.cover, baseUrl)}}" mode="aspectFill"></image>
+        <view wx:else class="item-img-placeholder">📦</view>
+          <view class="info-content">
+            <view class="item-title">{{item.item.title}}</view>
+            <view class="item-type">
+              {{item.item.type === 'lost' ? '寻物启事' : '拾获物品'}}
+            </view>
+            <view class="apply-time">申请时间：{{item.created}}</view>
+          </view>
+        </view>
+        <view class="apply-status {{item.status}}">
+          {{item.status === 'pending' ? '审核中' : item.status === 'agree' ? '审核通过' : '审核驳回'}}
+        </view>
+      </view>
+
+      <!-- 撤销申请按钮（仅待审核状态显示） -->
+      <view wx:if="{{item.status === 'pending'}}" class="claim-actions">
+        <view class="cancel-btn" catchtap="cancelClaim" data-id="{{item._id || item.id}}">撤销申请</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 空数据提示 -->
+  <empty 
+    wx:else
+    text="暂无认领申请"
+    subtext="快去认领你丢失/捡到的物品吧~"
+    btnText="去首页看看"
+    bind:btnClick="goToIndex"
+  ></empty>
+</view>

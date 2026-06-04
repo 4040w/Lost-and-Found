@@ -1,0 +1,149 @@
+page {
+  background-color: #FAFAFA;
+}
+
+.page {
+  padding: 40rpx 0 80rpx;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+/* ── Identity (no color block) ── */
+.identity {
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+  padding: 24rpx 32rpx 48rpx;
+  background-color: #FAFAFA;
+}
+
+.avatar-btn {
+  flex-shrink: 0;
+  width: 112rpx;
+  height: 112rpx;
+  padding: 0;
+  margin: 0;
+  background: none;
+  border: none;
+  border-radius: 50%;
+  line-height: 1;
+}
+
+.avatar-btn::after { border: none; }
+
+.avatar {
+  width: 112rpx;
+  height: 112rpx;
+  border-radius: 50%;
+  background-color: #EEE;
+  display: block;
+}
+
+.avatar-placeholder { background-color: #ECECEC; }
+
+.identity-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.identity-name {
+  font-size: 40rpx;
+  font-weight: 700;
+  color: #1C1C1E;
+  line-height: 1.25;
+  background: transparent;
+  border: none;
+  padding: 0;
+  min-height: 56rpx;
+  max-width: 100%;
+}
+
+.identity-sub {
+  margin-top: 8rpx;
+  font-size: 24rpx;
+  color: #999;
+}
+
+.identity-save {
+  flex-shrink: 0;
+  padding: 16rpx 28rpx;
+  background-color: #1C1C1E;
+  color: #FFFFFF;
+  border-radius: 999rpx;
+  font-size: 26rpx;
+  font-weight: 500;
+}
+
+/* ── Grouped menu ── */
+.group-label {
+  padding: 16rpx 32rpx 12rpx;
+  font-size: 22rpx;
+  color: #999;
+  letter-spacing: 1rpx;
+  text-transform: uppercase;
+}
+
+.group {
+  background-color: #FFFFFF;
+  margin: 0 24rpx 32rpx;
+  border-radius: 24rpx;
+  overflow: hidden;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  padding: 32rpx 28rpx;
+  position: relative;
+}
+
+/* Hairline divider only between rows, indented to align with text */
+.row + .row::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 28rpx;
+  right: 0;
+  height: 1rpx;
+  background-color: #EFEFEF;
+}
+
+.row-text {
+  flex: 1;
+  font-size: 30rpx;
+  color: #1C1C1E;
+}
+
+.row-arrow {
+  color: #CCC;
+  font-size: 28rpx;
+  margin-left: 8rpx;
+}
+
+/* Red unread badge */
+.row-badge {
+  min-width: 36rpx;
+  height: 36rpx;
+  padding: 0 12rpx;
+  background-color: #FF3B30;
+  color: #FFFFFF;
+  border-radius: 18rpx;
+  font-size: 22rpx;
+  line-height: 36rpx;
+  text-align: center;
+  margin-right: 16rpx;
+  box-sizing: border-box;
+  font-weight: 500;
+}
+
+/* ── Logout — full-width destructive action, sits separate ── */
+.logout {
+  margin: 32rpx 24rpx 0;
+  padding: 32rpx 0;
+  background-color: #FFFFFF;
+  border-radius: 24rpx;
+  text-align: center;
+  font-size: 30rpx;
+  color: #FF3B30;
+  font-weight: 500;
+}

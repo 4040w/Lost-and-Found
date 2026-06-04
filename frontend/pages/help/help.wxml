@@ -1,0 +1,115 @@
+<view class="help-page">
+  <!-- 页面标题 -->
+  <view class="page-title">使用帮助</view>
+  
+  <!-- 帮助分类标签 -->
+  <view class="help-tab">
+    <view 
+      class="tab-item {{activeTab === 'publish' ? 'active' : ''}}"
+      bindtap="changeTab"
+      data-tab="publish"
+    >发布物品</view>
+    <view 
+      class="tab-item {{activeTab === 'claim' ? 'active' : ''}}"
+      bindtap="changeTab"
+      data-tab="claim"
+    >认领物品</view>
+    <view 
+      class="tab-item {{activeTab === 'common' ? 'active' : ''}}"
+      bindtap="changeTab"
+      data-tab="common"
+    >常见问题</view>
+  </view>
+  
+  <!-- 发布物品帮助 -->
+  <view class="help-content" wx:if="{{activeTab === 'publish'}}">
+    <view class="help-item">
+      <view class="item-title">Q1：如何发布寻物/拾获物品？</view>
+      <view class="item-content">
+        1. 首页点击底部Tab栏「寻物」/「拾获」按钮；<br/>
+        2. 按步骤填写物品名称、类型、时间、核心特征等信息；<br/>
+        3. 选择物品遗失/拾获地点（最多3个）；<br/>
+        4. 上传物品照片（最多9张，清晰照片更易匹配）；<br/>
+        5. 核对信息后提交，等待管理员审核（1-2个工作日）。
+      </view>
+    </view>
+    <view class="help-item">
+      <view class="item-title">Q2：发布的物品信息可以修改吗？</view>
+      <view class="item-content">
+        物品信息提交后，在审核通过前可在「我的-我的发布」中点击「编辑」修改；审核通过后如需修改，请联系管理员。
+      </view>
+    </view>
+    <view class="help-item">
+      <view class="item-title">Q3：发布物品需要审核多久？</view>
+      <view class="item-content">
+        管理员会在1-2个工作日内完成审核，审核结果会通过「消息通知」告知你。
+      </view>
+    </view>
+  </view>
+  
+  <!-- 认领物品帮助 -->
+  <view class="help-content" wx:if="{{activeTab === 'claim'}}">
+    <view class="help-item">
+      <view class="item-title">Q1：如何认领物品？</view>
+      <view class="item-content">
+        1. 在物品详情页点击「我丢了，申请认领」（拾获物品）/「我捡到了，申请认领」（寻物物品）；<br/>
+        2. 填写认领理由，上传相关凭证（如身份证、购买记录、物品特征照片等）；<br/>
+        3. 提交申请后等待管理员审核，审核结果会通过「消息通知」告知。
+      </view>
+    </view>
+    <view class="help-item">
+      <view class="item-title">Q2：认领申请需要提供哪些凭证？</view>
+      <view class="item-content">
+        根据物品类型提供对应凭证：<br/>
+        - 证件类（身份证/校园卡）：本人手持证件照片；<br/>
+        - 电子设备类：购买发票/序列号/锁屏界面照片；<br/>
+        - 其他物品：能证明物品归属的特征照片或购买记录。
+      </view>
+    </view>
+    <view class="help-item">
+      <view class="item-title">Q3：认领申请审核通过后如何取回物品？</view>
+      <view class="item-content">
+        审核通过后，管理员会通过预留联系方式与你对接，可选择线下自取或邮寄（邮寄费用自理）。
+      </view>
+    </view>
+  </view>
+  
+  <!-- 常见问题帮助 -->
+  <view class="help-content" wx:if="{{activeTab === 'common'}}">
+    <view class="help-item">
+      <view class="item-title">Q1：忘记登录密码怎么办？</view>
+      <view class="item-content">
+        在登录页点击「忘记密码」，输入注册手机号，获取验证码后重置密码。
+      </view>
+    </view>
+    <view class="help-item">
+      <view class="item-title">Q2：如何删除已发布的物品信息？</view>
+      <view class="item-content">
+        在「我的-我的发布」中找到对应物品，点击「删除」即可；若物品已被认领，无法删除，可联系管理员隐藏。
+      </view>
+    </view>
+    <view class="help-item">
+      <view class="item-title">Q3：联系方式会被他人看到吗？</view>
+      <view class="item-content">
+        不会。你的联系方式仅管理员可见，认领匹配成功后，管理员会作为中介对接双方，保护你的隐私。
+      </view>
+    </view>
+    <view class="help-item">
+      <view class="item-title">Q4：发现虚假信息如何举报？</view>
+      <view class="item-content">
+        在物品详情页点击「举报」按钮，选择举报类型并填写理由，管理员会核实后处理。
+      </view>
+    </view>
+  </view>
+  
+  <!-- 联系我们 -->
+  <view class="contact-us">
+    <view class="contact-title">联系我们</view>
+    <view class="contact-content">
+      如遇问题未解决，可联系管理员：<br/>
+      微信：xxx123456<br/>
+      邮箱：help@example.com<br/>
+      工作时间：周一至周五 9:00-18:00
+    </view>
+  </view>
+</view>

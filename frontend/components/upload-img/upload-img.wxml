@@ -1,0 +1,41 @@
+<view class="upload-img">
+  <!-- 上传提示 -->
+  <view class="upload-tip" wx:if="{{tip}}">{{tip}}</view>
+  
+  <!-- 图片预览列表 -->
+  <view class="img-list">
+    <!-- 已上传图片 -->
+    <block wx:for="{{imgList}}" wx:key="index">
+      <view class="img-item">
+        <!-- 图片预览 -->
+        <image 
+          src="{{item}}" 
+          mode="aspectFill"
+          bindtap="previewImg"
+          data-index="{{index}}"
+        ></image>
+        <!-- 删除按钮 -->
+        <view 
+          class="del-btn"
+          bindtap="deleteImg"
+          data-index="{{index}}"
+        >×</view>
+      </view>
+    </block>
+    
+    <!-- 添加按钮（未达最大数量时显示） -->
+    <view 
+      class="img-add"
+      bindtap="chooseImg"
+      wx:if="{{imgList.length < maxCount}}"
+    >
+      <view class="add-icon">➕</view>
+      <text wx:if="{{btnText}}">{{btnText}}</text>
+    </view>
+  </view>
+  
+  <!-- 数量提示（可选） -->
+  <view class="count-tip" wx:if="{{showCount}}">
+    {{imgList.length}}/{{maxCount}}
+  </view>
+</view>

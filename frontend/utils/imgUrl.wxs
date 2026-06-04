@@ -1,0 +1,32 @@
+// WXS runs in an isolated sandbox; keep BASE_URL in sync with config/env.js
+var BASE_URL = 'https://59f07d80.r12.cpolar.top';
+
+/**
+ * Resolves a raw cover value (relative path or legacy absolute URL) to the
+ * full URL that a <image> src attribute requires.
+ *
+ * @param {string} cover   - e.g. "/uploads/xxx.png"  or old "http://localhost:2349/uploads/xxx.png"
+ * @param {string} baseUrl - injected from page/component data so it stays env-aware
+ */
+function resolve(cover, baseUrl) {
+  var b = baseUrl || BASE_URL;
+  if (!cover) return '';
+
+  // External absolute URLs (WeChat CDN, Qiniu, etc.) — use as-is.
+  // Only strip the origin when the path is a local /uploads/ file.
+  if (cover.slice(0, 4) === 'http') {
+    var uploadsIdx = cover.indexOf('/uploads/');
+    if (uploadsIdx >= 0) {
+      cover = cover.slice(uploadsIdx);
+    } else {
+      return cover;
+    }
+  }
+
+  // Prepend base URL for root-relative /uploads/ paths
+  if (cover.slice(0, 1) === '/') return b + cover;
+
+  return cover;
+}
+
+module.exports = { resolve: resolve };

@@ -1,0 +1,28 @@
+<view class="message-detail-page">
+  <!-- 头部 -->
+  <view class="detail-header">
+    <view class="msg-type {{message.type}}">
+      {{message.type === 'system' ? '系统通知' : '认领相关'}}
+    </view>
+    <view class="msg-time">{{message.createTime}}</view>
+  </view>
+
+  <!-- 内容 -->
+  <view class="detail-content">
+    <view class="msg-title">{{message.title}}</view>
+    <view class="msg-content">{{message.content}}</view>
+    
+    <!-- 关联物品信息（如有） -->
+    <view class="related-item" wx:if="{{message.relatedItem}}">
+      <view class="related-title">关联物品</view>
+      <view class="item-card">
+        <image :src="message.relatedItem.cover || '/images/default.png'" mode="aspectFill"></image>
+        <view class="item-info">
+          <view class="item-name">{{message.relatedItem.title}}</view>
+          <view class="item-status">{{message.relatedItem.statusText}}</view>
+        </view>
+        <button bindtap="goToItemDetail" data-id="{{message.relatedItem.id}}">查看详情</button>
+      </view>
+    </view>
+  </view>
+</view>

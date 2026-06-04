@@ -1,0 +1,13 @@
+<view class="container">
+  <view class="item" wx:for="{{itemList}}" wx:key="id">
+    <view class="title">{{item.title}}</view>
+    <view class="info">类型：{{item.type === 'lost' ? '寻物' : '拾获'}}</view>
+    <view class="info">特征：{{item.feature}}</view>
+    <view class="info">状态：{{item.status === 0 ? '待审核' : item.status === 1 ? '已通过' : '已拒绝'}}</view>
+    
+    <view class="btns" wx:if="{{item.status === 0}}">
+      <button class="btn pass" data-id="{{item.id}}" bindtap="passItem">通过</button>
+      <button class="btn reject" data-id="{{item.id}}" bindtap="rejectItem">拒绝</button>
+    </view>
+  </view>
+</view>

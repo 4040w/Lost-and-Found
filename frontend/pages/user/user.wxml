@@ -1,0 +1,74 @@
+<view class="page">
+  <!-- ── Identity (logged in) ── -->
+  <view class="identity" wx:if="{{isLogin}}">
+    <button class="avatar-btn" open-type="chooseAvatar" bindchooseavatar="onChooseAvatar">
+      <image
+        class="avatar"
+        src="{{tempAvatar || userInfo.avatarUrl || '/images/user.png'}}"
+        mode="aspectFill"
+      />
+    </button>
+
+    <view class="identity-text">
+      <input
+        class="identity-name"
+        type="nickname"
+        placeholder="{{userInfo.nickName || '点击设置昵称'}}"
+        bindinput="onNickNameInput"
+        bindblur="onNickNameInput"
+      />
+      <view class="identity-sub">点击头像或昵称可修改</view>
+    </view>
+
+    <view wx:if="{{editing}}" class="identity-save" bindtap="saveProfile">保存</view>
+  </view>
+
+  <!-- ── Identity (logged out) ── -->
+  <view class="identity" wx:else>
+    <image class="avatar avatar-placeholder" src="/images/user.png" mode="aspectFill" />
+    <view class="identity-text">
+      <view class="identity-name">未登录</view>
+      <view class="identity-sub">登录后即可发布与认领</view>
+    </view>
+    <view class="identity-save" bindtap="goToLogin">登录</view>
+  </view>
+
+  <!-- ── Menu — grouped, no emoji icons, hairline rows ── -->
+  <view class="group-label">我的内容</view>
+  <view class="group">
+    <view class="row" bindtap="goToMyPublish">
+      <text class="row-text">我的发布</text>
+      <text class="row-arrow">›</text>
+    </view>
+    <view class="row" bindtap="goToMyClaim">
+      <text class="row-text">我的认领</text>
+      <text class="row-arrow">›</text>
+    </view>
+  </view>
+
+  <view class="group-label">消息</view>
+  <view class="group">
+    <view class="row" bindtap="goToMessage">
+      <text class="row-text">消息通知</text>
+      <view wx:if="{{unreadCount > 0}}" class="row-badge">
+        {{unreadCount > 99 ? '99+' : unreadCount}}
+      </view>
+      <text class="row-arrow">›</text>
+    </view>
+  </view>
+
+  <view class="group-label">其他</view>
+  <view class="group">
+    <view class="row" bindtap="goToHelp">
+      <text class="row-text">使用帮助</text>
+      <text class="row-arrow">›</text>
+    </view>
+    <view class="row" bindtap="goToAdmin" wx:if="{{isAdmin}}">
+      <text class="row-text">管理员后台</text>
+      <text class="row-arrow">›</text>
+    </view>
+  </view>
+
+  <!-- ── Logout (separate destructive action) ── -->
+  <view wx:if="{{isLogin}}" class="logout" bindtap="logout">退出登录</view>
+</view>

@@ -1,0 +1,36 @@
+.nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  background-color: #FFFFFF;
+  border-bottom: 1px solid #FAF8F5;
+  position: relative;
+}
+
+.nav-left {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.back-icon {
+  font-size: 18px;
+  color: #2D2D2D;
+}
+
+.nav-title {
+  font-size: 16px;
+  font-weight: bold;
+  color: #2D2D2D;
+}
+
+.nav-right {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  color: #A8D5C2;
+}

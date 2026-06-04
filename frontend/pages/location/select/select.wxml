@@ -1,0 +1,64 @@
+<view class="location-page">
+  <!-- 地图区域 -->
+  <map
+    class="campus-map"
+    longitude="{{longitude}}"
+    latitude="{{latitude}}"
+    scale="18"
+    markers="{{markers}}"
+    bindtap="mapClick"
+    show-location
+  ></map>
+
+  <!-- 搜索栏 -->
+  <view class="search-bar">
+    <input
+      placeholder="搜索校园地点（如图书馆3楼）"
+      value="{{searchKey}}"
+      bindinput="onSearchInput"
+      confirm-type="search"
+      bindconfirm="searchLocation"
+    />
+  </view>
+
+  <!-- 匹配地点列表 -->
+  <view class="location-list" wx:if="{{locationList.length > 0}}">
+    <view
+      class="location-item"
+      wx:for="{{locationList}}"
+      wx:key="id"
+      bindtap="selectLocation"
+      data-location="{{item}}"
+    >
+      <view class="name">{{item.name}}</view>
+      <view class="area">{{item.area}}</view>
+    </view>
+  </view>
+
+  <!-- 地点范围选择 -->
+  <view class="range-select" wx:if="{{selectedLocation.id}}">
+    <view class="range-title">选择地点范围</view>
+    <view
+      class="range-item {{range === 'only' ? 'active' : ''}}"
+      bindtap="selectRange"
+      data-range="only"
+    >仅该地点</view>
+    <view
+      class="range-item {{range === '50m' ? 'active' : ''}}"
+      bindtap="selectRange"
+      data-range="50m"
+    >该地点50米内</view>
+    <view
+      class="range-item {{range === 'campus' ? 'active' : ''}}"
+      bindtap="selectRange"
+      data-range="campus"
+    >整个校区</view>
+  </view>
+
+  <!-- 确认按钮 -->
+  <button
+    class="confirm-btn"
+    wx:if="{{selectedLocation.id}}"
+    bindtap="confirmLocation"
+  >确认选择</button>
+</view>

@@ -1,0 +1,186 @@
+<view class="found-publish-page">
+  <!-- 步骤导航 -->
+  <view class="step-nav">
+    <view class="step-item {{step === 1 ? 'active' : ''}}" bindtap="goToStep" data-step="1">1. 基础信息</view>
+    <view class="step-item {{step === 2 ? 'active' : ''}}" bindtap="goToStep" data-step="2">2. 拾获地点</view>
+    <view class="step-item {{step === 3 ? 'active' : ''}}" bindtap="goToStep" data-step="3">3. 上传照片</view>
+    <view class="step-item {{step === 4 ? 'active' : ''}}" bindtap="goToStep" data-step="4">4. 信息确认</view>
+  </view>
+
+  <!-- 步骤1：基础信息 -->
+  <view class="step-content" wx:if="{{step === 1}}">
+    <view class="form-item">
+      <label class="required">物品名称</label>
+      <input 
+        bindinput="onFormInput" 
+        data-key="title" 
+        placeholder="请输入物品名称（如身份证、iPhone15）" 
+        value="{{formData.title}}"
+      />
+    </view>
+    
+    <view class="form-item">
+      <label class="required">物品类型</label>
+      <picker bindchange="onTypeChange" value="{{typeIndex}}" range="{{typeList}}">
+        <view class="picker">{{typeList[typeIndex]}}</view>
+      </picker>
+    </view>
+    
+    <view class="form-item">
+      <label class="required">拾获时间</label>
+      <picker mode="date" bindchange="onDateChange" value="{{formData.time}}">
+        <view class="picker">{{formData.time || '请选择拾获时间'}}</view>
+      </picker>
+    </view>
+    
+    <view class="form-item">
+      <label class="required">核心特征</label>
+      <input 
+        bindinput="onFormInput" 
+        data-key="feature" 
+        placeholder="如证件号后4位、手机型号、外观特征（必填，用于核实）" 
+        value="{{formData.feature}}"
+      />
+    </view>
+    
+    <view class="form-item">
+      <label>悬赏金额（元）</label>
+      <input 
+        type="digit" 
+        bindinput="onFormInput" 
+        data-key="reward" 
+        placeholder="可选，填写后更易找回" 
+        value="{{formData.reward}}"
+      />
+    </view>
+    
+    <view class="form-item">
+      <label>是否接受邮寄</label>
+      <switch bindchange="onMailChange" checked="{{formData.isMail}}"/>
+    </view>
+    
+    <view class="form-item">
+      <label class="required">联系方式</label>
+      <input 
+        bindinput="onFormInput" 
+        data-key="contact" 
+        placeholder="手机号/微信号（仅管理员可见，保护隐私）" 
+        value="{{formData.contact}}"
+      />
+    </view>
+    
+    <view class="form-item">
+      <label>备注说明</label>
+      <textarea 
+        bindinput="onFormInput" 
+        data-key="remark" 
+        placeholder="可选，补充其他信息" 
+        value="{{formData.remark}}"
+        maxlength="200"
+      />
+    </view>
+
+    <button class="next-btn primary" bindtap="toStep2">下一步：填写拾获地点</button>
+  </view>
+
+  <!-- 步骤2：拾获地点 -->
+  <view class="step-content" wx:if="{{step === 2}}">
+    <view class="location-tips">
+      请填写可能拾获的地点（最多3个，按优先级排序，精准地点更易找回）
+    </view>
+    
+    <view class="location-list" wx:if="{{locationList.length > 0}}">
+      <view class="location-item" wx:for="{{locationList}}" wx:key="id">
+        <view class="item-header">
+          <text>优先级{{index + 1}}</text>
+          <text class="item-name">{{item.name}}</text>
+        </view>
+        <view class="item-range">
+          范围：{{item.range === 'only' ? '仅该地点' : item.range === '50m' ? '50米内' : '整个校区'}}
+        </view>
+        <view class="item-op">
+          <view bindtap="upLocation" data-index="{{index}}" wx:if="{{index > 0}}">↑ 上移</view>
+          <view bindtap="downLocation" data-index="{{index}}" wx:if="{{index < locationList.length - 1}}">↓ 下移</view>
+          <view bindtap="delLocation" data-index="{{index}}" class="del-btn">× 删除</view>
+        </view>
+      </view>
+    </view>
+    
+    <button class="add-location-btn primary" bindtap="toSelectLocation" wx:if="{{locationList.length < 3}}">+ 添加拾获地点（模拟）</button>
+    <empty wx:if="{{locationList.length === 0}}" text="请先添加拾获地点"></empty>
+
+    <view class="step-btn-group">
+      <button bindtap="toStep1">上一步</button>
+      <button class="primary" bindtap="toStep3">下一步：上传照片</button>
+    </view>
+  </view>
+
+  <!-- 步骤3：上传照片 -->
+  <view class="step-content" wx:if="{{step === 3}}">
+    <view class="upload-tips">
+      上传物品照片（无照片可上传同类物品参考图，最多9张，帮助他人识别）
+    </view>
+    
+    <view class="upload-list">
+      <view class="upload-item" wx:for="{{imgList}}" wx:key="index">
+        <image src="{{item}}" mode="aspectFill"></image>
+        <view bindtap="delImg" data-index="{{index}}" class="del-btn">×</view>
+      </view>
+      <view class="upload-add" bindtap="chooseImg" wx:if="{{imgList.length < 9}}">
+        <view class="add-icon">➕</view>
+        <text>添加照片</text>
+      </view>
+    </view>
+
+    <view class="step-btn-group">
+      <button bindtap="toStep2">上一步</button>
+      <button class="primary" bindtap="toStep4">下一步：信息确认</button>
+    </view>
+  </view>
+
+  <!-- 步骤4：信息确认 -->
+  <view class="step-content" wx:if="{{step === 4}}">
+    <view class="confirm-tips">
+      请仔细核对以下信息，提交后立即公开发布
+    </view>
+    
+    <view class="confirm-info">
+      <view class="info-item"><label>物品名称：</label><text>{{formData.title}}</text></view>
+      <view class="info-item"><label>物品类型：</label><text>{{formData.type}}</text></view>
+      <view class="info-item"><label>拾获时间：</label><text>{{formData.time}}</text></view>
+      <view class="info-item"><label>核心特征：</label><text>{{formData.feature}}</text></view>
+      <view class="info-item"><label>悬赏金额：</label><text>{{formData.reward || 0}}元</text></view>
+      <view class="info-item"><label>接受邮寄：</label><text>{{formData.isMail ? '是' : '否'}}</text></view>
+      <view class="info-item"><label>联系方式：</label><text>{{formData.contact}}</text></view>
+      <view class="info-item">
+        <label>拾获地点：</label>
+        <view class="location-info">
+          <view wx:for="{{locationList}}" wx:key="id">
+            优先级{{index + 1}}：{{item.name}}（{{item.range === 'only' ? '仅该地点' : item.range === '50m' ? '50米内' : '整个校区'}}）
+          </view>
+        </view>
+      </view>
+      <view class="info-item" wx:if="{{formData.remark}}">
+        <label>备注说明：</label><text>{{formData.remark}}</text>
+      </view>
+    </view>
+    
+    <view class="commit-checkbox">
+      <checkbox-group bindchange="onCommitChange">
+        <label class="commit-label">
+          <checkbox value="agree" checked="{{isCommit}}"/>
+          我承诺所填写的所有信息真实有效
+        </label>
+      </checkbox-group>
+    </view>
+
+    <view class="step-btn-group">
+      <button bindtap="toStep3">上一步</button>
+      <button
+        class="primary"
+        bindtap="publishFound"
+        disabled="{{!isCommit}}"
+      >确认发布</button>
+    </view>
+  </view>
+</view>

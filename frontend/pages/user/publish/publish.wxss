@@ -1,0 +1,69 @@
+.my-publish-page {
+  background-color: #FAF8F5;
+  min-height: 100vh;
+  padding: 16px;
+}
+
+/* 状态筛选标签 */
+.status-tab {
+  display: flex;
+  background-color: #FFFFFF;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+
+.tab-item {
+  flex: 1;
+  text-align: center;
+  padding: 12px 0;
+  font-size: 14px;
+  color: #8A8A8A;
+  position: relative;
+}
+
+.tab-item.active {
+  color: #A8D5C2;
+  font-weight: bold;
+}
+
+.tab-item.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 2px;
+  background-color: #A8D5C2;
+}
+
+/* 发布列表 */
+.publish-list {
+  margin-bottom: 20px;
+}
+
+/* 卡片操作按钮 */
+.card-op {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.op-btn {
+  font-size: 12px;
+  padding: 4px 12px;
+  border-radius: 50px;
+}
+
+.op-btn.edit {
+  background-color: #EEF6F2;
+  color: #5BAF8A;
+  border: none;
+}
+
+.op-btn.delete {
+  background-color: #FFF2F0;
+  color: #ff4d4f;
+  border: none;
+}

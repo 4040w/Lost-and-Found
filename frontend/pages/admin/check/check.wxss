@@ -1,0 +1,49 @@
+.container {
+  padding: 16px;
+  background-color: #FAF8F5;
+  min-height: 100vh;
+}
+
+.item {
+  background: #FFFFFF;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+
+.title {
+  font-size: 30rpx;
+  font-weight: bold;
+  margin-bottom: 10rpx;
+  color: #2D2D2D;
+}
+
+.info {
+  font-size: 26rpx;
+  color: #8A8A8A;
+  margin-bottom: 6rpx;
+}
+
+.btns {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.btn {
+  flex: 1;
+  border-radius: 50px;
+  font-size: 26rpx;
+  padding: 10rpx 0;
+}
+
+.pass {
+  background: #A8D5C2;
+  color: #fff;
+}
+
+.reject {
+  background: #ff4d4f;
+  color: #fff;
+}

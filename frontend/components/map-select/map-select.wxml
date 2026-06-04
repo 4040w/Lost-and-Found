@@ -1,0 +1,58 @@
+<view class="map-select">
+  <!-- 地图容器 -->
+  <map
+    class="map"
+    longitude="{{longitude}}"
+    latitude="{{latitude}}"
+    scale="18"
+    markers="{{markers}}"
+    bindtap="onMapClick"
+    show-location
+  ></map>
+
+  <!-- 搜索框 -->
+  <view class="search-bar">
+    <input
+      placeholder="{{placeholder}}"
+      value="{{searchKey}}"
+      bindinput="onSearchInput"
+      confirm-type="search"
+      bindconfirm="onSearch"
+    />
+  </view>
+
+  <!-- 搜索结果 -->
+  <view class="search-result" wx:if="{{resultList.length > 0}}">
+    <view 
+      class="result-item"
+      wx:for="{{resultList}}"
+      wx:key="id"
+      bindtap="onResultSelect"
+      data-item="{{item}}"
+    >
+      {{item.name}}
+    </view>
+  </view>
+
+  <!-- 范围选择 -->
+  <view class="range-select" wx:if="{{selectedLocation.id}}">
+    <view class="range-item {{range === 'only' ? 'active' : ''}}" bindtap="onRangeSelect" data-range="only">
+      仅该地点
+    </view>
+    <view class="range-item {{range === '50m' ? 'active' : ''}}" bindtap="onRangeSelect" data-range="50m">
+      50米内
+    </view>
+    <view class="range-item {{range === 'campus' ? 'active' : ''}}" bindtap="onRangeSelect" data-range="campus">
+      整个校区
+    </view>
+  </view>
+
+  <!-- 确认按钮 -->
+  <button 
+    class="confirm-btn"
+    wx:if="{{selectedLocation.id}}"
+    bindtap="onConfirm"
+  >
+    确认选择
+  </button>
+</view>

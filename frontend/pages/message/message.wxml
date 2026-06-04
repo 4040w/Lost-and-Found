@@ -1,0 +1,67 @@
+<view class="message-page">
+  <!-- 页面标题栏 -->
+  <view class="page-header">
+    <view class="title">消息通知</view>
+    <button bindtap="markAllRead" class="mark-btn" wx:if="{{unreadCount > 0}}">
+      全部已读
+    </button>
+  </view>
+
+  <!-- 消息分类标签 -->
+  <view class="message-tab">
+    <view 
+      class="tab-item {{activeTab === 'all' ? 'active' : ''}}"
+      bindtap="changeTab"
+      data-tab="all"
+    >
+      全部消息
+      <view class="badge" wx:if="{{unreadCount > 0}}">{{unreadCount}}</view>
+    </view>
+    <view 
+      class="tab-item {{activeTab === 'system' ? 'active' : ''}}"
+      bindtap="changeTab"
+      data-tab="system"
+    >
+      系统通知
+      <view class="badge" wx:if="{{systemUnread > 0}}">{{systemUnread}}</view>
+    </view>
+    <view 
+      class="tab-item {{activeTab === 'claim' ? 'active' : ''}}"
+      bindtap="changeTab"
+      data-tab="claim"
+    >
+      认领相关
+      <view class="badge" wx:if="{{claimUnread > 0}}">{{claimUnread}}</view>
+    </view>
+  </view>
+
+  <!-- 消息列表 -->
+  <view class="message-list">
+    <block wx:for="{{messageList}}" wx:key="id">
+      <view 
+        class="message-item {{!item.isRead ? 'unread' : ''}}"
+        bindtap="goToDetail"
+        data-id="{{item.id}}"
+      >
+        <!-- 消息图标 -->
+        <view class="msg-icon {{item.type}}">
+          <view wx:if="{{item.type === 'system'}}">📢</view>
+          <view wx:if="{{item.type === 'claim'}}">🤝</view>
+        </view>
+        <!-- 消息内容 -->
+        <view class="msg-content">
+          <view class="msg-title">{{item.title}}</view>
+          <view class="msg-desc">{{item.content}}</view>
+          <view class="msg-time">{{item.createTime}}</view>
+        </view>
+        <!-- 未读标记 -->
+        <view class="unread-dot" wx:if="{{!item.isRead}}"></view>
+      </view>
+    </block>
+
+    <!-- 空数据提示 -->
+    <view class="empty" wx:if="{{messageList.length === 0}}">
+      暂无消息通知
+    </view>
+  </view>
+</view>

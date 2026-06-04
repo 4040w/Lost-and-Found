@@ -1,0 +1,10 @@
+<view class="container">
+  <view class="user" wx:for="{{userList}}" wx:key="id">
+    <view>用户名：{{item.username}}</view>
+    <view>状态：{{item.banned ? '已封禁' : '正常'}}</view>
+    <view class="btns">
+      <button wx:if="{{!item.banned}}" data-id="{{item.id}}" bindtap="banUser" class="ban">封禁</button>
+      <button wx:if="{{item.banned}}" data-id="{{item.id}}" bindtap="unbanUser" class="unban">解封</button>
+    </view>
+  </view>
+</view>

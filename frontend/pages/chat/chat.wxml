@@ -1,0 +1,40 @@
+<view class="chat-page">
+  <scroll-view
+    class="msg-list"
+    scroll-y
+    scroll-into-view="{{scrollIntoView}}"
+    scroll-with-animation
+    enable-back-to-top
+  >
+    <view
+      wx:for="{{messages}}"
+      wx:key="_id"
+      id="msg-{{item._id}}"
+      class="msg-row {{item.mine ? 'mine' : 'theirs'}}"
+    >
+      <view class="bubble {{item.mine ? 'bubble-mine' : 'bubble-theirs'}} {{item.pending ? 'pending' : ''}}">
+        <text wx:if="{{item.type === 'text'}}">{{item.content}}</text>
+        <image wx:elif="{{item.type === 'image'}}" src="{{item.content}}" mode="widthFix" class="msg-img" />
+      </view>
+    </view>
+
+    <view wx:if="{{messages.length === 0}}" class="empty-hint">
+      还没有消息，发个招呼吧 👋
+    </view>
+  </scroll-view>
+
+  <view class="input-bar">
+    <input
+      class="input"
+      value="{{inputValue}}"
+      bindinput="onInput"
+      bindconfirm="onSendTap"
+      placeholder="说点什么..."
+      confirm-type="send"
+      cursor-spacing="20"
+    />
+    <button class="send-btn {{inputValue ? 'active' : ''}}" bindtap="onSendTap">发送</button>
+  </view>
+
+  <view wx:if="{{!connected}}" class="conn-banner">连接中...</view>
+</view>

@@ -1,0 +1,20 @@
+<view class="empty-container">
+  <!-- 自定义图标 -->
+  <view class="empty-icon" wx:if="{{icon}}">{{icon}}</view>
+  <view class="empty-icon" wx:else>📭</view>
+  
+  <!-- 主文案 -->
+  <view class="empty-text">{{text || '暂无相关数据'}}</view>
+  
+  <!-- 副文案（可选） -->
+  <view class="empty-subtext" wx:if="{{subtext}}">{{subtext}}</view>
+  
+  <!-- 操作按钮（可选） -->
+  <button 
+    class="empty-btn" 
+    wx:if="{{btnText}}"
+    bindtap="onBtnClick"
+  >
+    {{btnText}}
+  </button>
+</view>

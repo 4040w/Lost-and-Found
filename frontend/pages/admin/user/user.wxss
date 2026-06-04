@@ -1,0 +1,29 @@
+.container {
+  padding: 16px;
+  background-color: #FAF8F5;
+  min-height: 100vh;
+}
+
+.user {
+  background: #FFFFFF;
+  padding: 16px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+
+.btns {
+  margin-top: 12px;
+}
+
+.ban {
+  background: #ff4d4f;
+  color: #fff;
+  border-radius: 50px;
+}
+
+.unban {
+  background: #A8D5C2;
+  color: #fff;
+  border-radius: 50px;
+}

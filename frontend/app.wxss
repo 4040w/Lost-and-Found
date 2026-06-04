@@ -1,0 +1,97 @@
+/* 全局样式 */
+page {
+  background-color: #FAF8F5;
+  font-size: 14px;
+  color: #2D2D2D;
+  font-family: 'PingFang SC', system-ui, sans-serif;
+}
+
+/* 按钮通用样式 */
+button {
+  border-radius: 50px;
+  font-size: 14px;
+}
+
+button.primary {
+  background-color: #A8D5C2;
+  color: white;
+}
+
+/* 表单通用样式 */
+.form-item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+  padding: 0 10px;
+}
+
+.form-item label {
+  font-size: 14px;
+  color: #2D2D2D;
+  margin-bottom: 5px;
+}
+
+.form-item label.required::after {
+  content: '*';
+  color: #ff4d4f;
+  margin-left: 2px;
+}
+
+.form-item input, .form-item picker, .form-item textarea {
+  padding: 10px 12px;
+  background-color: #F5F5F5;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+/* 空数据提示 */
+.empty {
+  text-align: center;
+  padding: 40px 0;
+  color: #8A8A8A;
+  font-size: 14px;
+}
+
+/* 步骤导航通用样式 */
+.step-nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: #FFFFFF;
+  margin-bottom: 15px;
+}
+
+.step-nav view {
+  font-size: 14px;
+  color: #8A8A8A;
+  position: relative;
+}
+
+.step-nav view.active {
+  color: #A8D5C2;
+  font-weight: bold;
+}
+
+.step-nav view.active::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #A8D5C2;
+}
+
+/* 步骤按钮组 */
+.step-btn-group {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+.step-btn-group button {
+  flex: 1;
+  margin: 0 5px;
+}

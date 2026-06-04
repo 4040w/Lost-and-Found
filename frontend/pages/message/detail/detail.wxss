@@ -1,0 +1,106 @@
+.message-detail-page {
+  background-color: #FAF8F5;
+  padding: 16px;
+}
+
+/* 头部 */
+.detail-header {
+  background-color: #FFFFFF;
+  padding: 16px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+
+.msg-type {
+  font-size: 13px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 50px;
+}
+
+.msg-type.system {
+  background-color: #EEF6F2;
+  color: #5BAF8A;
+}
+
+.msg-type.claim {
+  background-color: #EEF0FF;
+  color: #7B6FBF;
+}
+
+.msg-time {
+  font-size: 12px;
+  color: #8A8A8A;
+}
+
+/* 内容 */
+.detail-content {
+  background-color: #FFFFFF;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+
+.msg-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #2D2D2D;
+}
+
+.msg-content {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #2D2D2D;
+  margin-bottom: 20px;
+}
+
+/* 关联物品 */
+.related-title {
+  font-size: 15px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #8A8A8A;
+}
+
+.item-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background-color: #FAF8F5;
+  border-radius: 8px;
+}
+
+.item-card image {
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+}
+
+.item-info {
+  flex: 1;
+}
+
+.item-name {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 4px;
+  color: #2D2D2D;
+}
+
+.item-status {
+  font-size: 12px;
+  color: #8A8A8A;
+}
+
+.item-card button {
+  font-size: 12px;
+  padding: 4px 14px;
+  background-color: #A8D5C2;
+  color: white;
+  border-radius: 50px;
+}

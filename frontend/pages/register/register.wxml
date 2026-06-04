@@ -1,0 +1,70 @@
+<view class="register-page">
+  <view class="register-box">
+
+    <!-- 手机号 -->
+    <view class="input-item">
+      <input 
+        class="input" 
+        placeholder="请输入手机号" 
+        bindinput="onPhoneInput"
+        value="{{phone}}"
+        maxlength="11"
+        type="number"
+      />
+    </view>
+
+    <!-- 验证码 -->
+    <view class="input-item code-item">
+      <input 
+        class="input" 
+        placeholder="请输入验证码" 
+        bindinput="onCodeInput"
+        value="{{code}}"
+      />
+      <button 
+        class="code-btn {{codeBtnDisabled ? 'disabled' : ''}}" 
+        bindtap="getCode"
+        disabled="{{codeBtnDisabled}}"
+      >
+        {{codeText}}
+      </button>
+    </view>
+
+    <!-- 密码 -->
+    <view class="input-item">
+      <input 
+        class="input" 
+        placeholder="请设置6-16位密码" 
+        bindinput="onPwdInput"
+        value="{{pwd}}"
+        password
+      />
+    </view>
+
+    <!-- 确认密码 -->
+    <view class="input-item">
+      <input 
+        class="input" 
+        placeholder="请确认密码" 
+        bindinput="onPwd2Input"
+        value="{{pwd2}}"
+        password
+      />
+    </view>
+
+    <!-- 注册按钮 -->
+    <button 
+      class="register-btn {{canSubmit ? '' : 'btn-disabled'}}" 
+      bindtap="doRegister"
+      disabled="{{!canSubmit}}"
+    >
+      立即注册
+    </button>
+
+    <!-- 去登录 -->
+    <view class="to-login" bindtap="goLogin">
+      已有账号？去登录
+    </view>
+
+  </view>
+</view>

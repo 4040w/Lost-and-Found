@@ -1,0 +1,49 @@
+<view class="chat-list-page">
+  <view wx:if="{{sessions.length === 0 && !loading}}" class="empty">
+    <view class="empty-icon">💬</view>
+    <view class="empty-text">还没有对话</view>
+    <view class="empty-sub">在物品详情页点击「联系 TA」即可开始</view>
+  </view>
+
+  <view wx:for="{{sessions}}" wx:key="sessionId" class="row-wrap">
+    <!-- Hidden action layer underneath; revealed by swiping the movable-view left -->
+    <view class="row-actions">
+      <view
+        class="action-delete"
+        bindtap="onDeleteTap"
+        data-id="{{item.sessionId}}"
+      >删除</view>
+    </view>
+
+    <movable-area class="row-area" style="width: {{screenWidth + actionWidth}}px;">
+      <movable-view
+        class="row"
+        direction="horizontal"
+        x="{{item.x}}"
+        out-of-bounds="{{false}}"
+        inertia
+        bindtouchend="onMoveEnd"
+        data-id="{{item.sessionId}}"
+        bindtap="onItemTap"
+        data-x="{{item.x}}"
+        style="width: {{screenWidth}}px;"
+      >
+        <view class="avatar-wrap">
+          <image class="avatar" src="{{item.counterparty.avatarUrl}}" mode="aspectFill" />
+          <view wx:if="{{item.unreadCount > 0}}" class="badge">
+            {{item.unreadCount > 99 ? '99+' : item.unreadCount}}
+          </view>
+        </view>
+
+        <view class="meta">
+          <view class="line-top">
+            <text class="name">{{item.counterparty.username}}</text>
+            <text class="time">{{item.timeLabel}}</text>
+          </view>
+          <view class="item-label">{{item.associatedItemLabel}}</view>
+          <view class="last-msg">{{item.lastMessageText}}</view>
+        </view>
+      </movable-view>
+    </movable-area>
+  </view>
+</view>
